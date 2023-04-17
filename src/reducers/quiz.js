@@ -7,7 +7,12 @@ const questions = [
   { id: 3, questionText: 'Where are rainforests found?', options: ['Northern hemisphere', 'Equator', 'Southern hemisphere', 'South Pole'], correctAnswerIndex: 1, fact: 'Rainforests are found near the equator, where the climate is warm and humid, which is ideal for the growth of diverse plant and animal species.' },
   { id: 4, questionText: 'What is the second heaviest land animal?', options: ['Rhinoceros', 'Bison', 'Hippopotamus', 'Gorilla'], correctAnswerIndex: 0, fact: 'The second heaviest land animal is the rhinoceros, with some species weighing over 2,500 kg (5,500 lb). The heaviest land animal is the African elephant.' },
   { id: 5, questionText: 'What is a simple way to save energy at home?', options: ['Leaving lights on', 'Unplugging chargers', 'Using oven', 'Long showers'], correctAnswerIndex: 1, fact: 'Unplugging chargers when not in use is a simple way to save energy at home. Chargers continue to draw power even when they are not charging devices.' },
-  { id: 6, questionText: 'How many hearts does an octopus have?', options: ['1', '2', '3', '4'], correctAnswerIndex: 2, fact: 'An octopus has three hearts. Two hearts pump blood through the gills, and the third pumps blood through the rest of the body.' }
+  { id: 6, questionText: 'How many hearts does an octopus have?', options: ['1', '2', '3', '4'], correctAnswerIndex: 2, fact: 'An octopus has three hearts. Two hearts pump blood through the gills, and the third pumps blood through the rest of the body.' },
+  { id: 7, questionText: 'What percentage of an iceberg is underwater?', options: ['10%', '40%', '70%', '90%'], correctAnswerIndex: 3, fact: 'About 90% of an iceberg is underwater, which is due to the density of ice being slightly less than that of water.' },
+  { id: 9, questionText: 'Which bird can fly backwards?', options: ['Eagle', 'Hummingbird', 'Penguin', 'Ostrich'], correctAnswerIndex: 1, fact: 'Hummingbirds can fly backwards due to their unique ball-and-socket joint at the shoulder, allowing them to rotate their wings in a full circle.' },
+  { id: 11, questionText: 'Main cause of deforestation?', options: ['Natural disasters', 'Human activities', 'Animal migration', 'Melting ice'], correctAnswerIndex: 1, fact: 'Human activities, such as logging, agriculture, and urbanization, are the main causes of deforestation.' },
+  { id: 13, questionText: 'Largest living structure on Earth?', options: ['Amazon Rainforest', 'Great Barrier Reef', 'Mount Everest', 'Sahara Desert'], correctAnswerIndex: 1, fact: 'The Great Barrier Reef is the largest living structure on Earth, stretching over 2,300 kilometers (1,400 miles) and consisting of more than 2,900 individual reefs.' }
+
 ]
 // The initial state of the quiz slice
 const initialState = {
