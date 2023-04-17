@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { quiz } from 'reducers/quiz';
-import { QuestionHeader, ButtonContainer, FactContainer, QuestionText } from './CurrentQuestion.styled';
+import { ProgressBarContainer, ProgressBarLine } from './ProgressBar.styled';
+import { QuestionHeader, ButtonContainer, FactContainer, QuestionText, NextButtonContainer } from './CurrentQuestion.styled';
 import { StyledButton, NextQuestionButton } from '../buttons/Button.styled';
 import Summary from '../content/Summary';
+
+const ProgressBar = () => {
+  const allQuestions = useSelector((state) => state.quiz.questions);
+  const currentQuestion = useSelector((state) => state.quiz.currentQuestionIndex);
+  const progressWidth = ((currentQuestion + 1) / allQuestions.length) * 100;
+
+  return (
+    <ProgressBarContainer>
+      <ProgressBarLine style={{ width: `${progressWidth}%` }} />
+    </ProgressBarContainer>
+  );
+};
 
 export const CurrentQuestion = () => {
   // Get the current question from the store
@@ -87,6 +100,7 @@ export const CurrentQuestion = () => {
 
   return (
     <div>
+      <ProgressBar />
       {currentQuestionIndex < numberOfQuestions ? (
         <div>
           <QuestionHeader>{question.questionText}</QuestionHeader>
@@ -107,15 +121,14 @@ export const CurrentQuestion = () => {
               <QuestionText>{question.fact}</QuestionText>
             )}
           </FactContainer>
-          <ButtonContainer>
-            {showFact && (
-              <div>
-                <NextQuestionButton
-                  buttonText="Next Question"
-                  handleClick={onNextQuestion} />
-              </div>
-            )}
-          </ButtonContainer>
+          <ButtonContainer />
+          {showFact && (
+            <NextButtonContainer>
+              <NextQuestionButton
+                buttonText="Next Question"
+                handleClick={onNextQuestion} />
+            </NextButtonContainer>
+          )}
         </div>
       ) : (
         <Summary onRestartQuiz={onRestartQuiz} />

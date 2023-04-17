@@ -12,7 +12,7 @@ const RED = {
   border: '2px solid #FA2844'
 };
 const GREEN = {
-  background: 'transparent',
+  background: '#28FA94',
   color: '#252525',
   border: '2px solid #28FA94'
 };
@@ -49,9 +49,13 @@ export const StyledButton = styled.button`
   font-weight: 700;
   @media (min-width: 668px) and (max-width: 1024px) {
     font-size: 18px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
   @media (min-width: 1025px) {
     font-size: 20px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
 `;
 
@@ -61,20 +65,24 @@ export const WelcomeButton = styled(StyledButton).attrs(
 )`
  display: inline-block;
   border-radius: 30px;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
   margin: 0.5rem 0%;
   width: 12rem;
   background: #28FA94;
   color: #252525;
   border: 2px solid #28FA94;
   font-family: 'Sora', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   @media (min-width: 668px) and (max-width: 1024px) {
     font-size: 18px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
   @media (min-width: 1025px) {
     font-size: 20px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
 `;
 
@@ -94,10 +102,14 @@ export const NextQuestionButton = styled(StyledButton).attrs((props) => ({
   font-size: 15px;
   font-weight: 700;
   @media (min-width: 668px) and (max-width: 1024px) {
-    font-size: 18px;
+    font-size: 20px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
   @media (min-width: 1025px) {
     font-size: 20px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
 `;
 
@@ -116,9 +128,13 @@ export const RestartButton = styled(StyledButton).attrs(
   font-size: 15px;
   font-weight: 700;
   @media (min-width: 668px) and (max-width: 1024px) {
-    font-size: 18px;
+    font-size: 20px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
   @media (min-width: 1025px) {
     font-size: 20px;
+    width: 16rem;
+    padding: 0.7rem 0;
   }
 `;

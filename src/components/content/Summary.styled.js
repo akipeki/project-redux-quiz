@@ -18,14 +18,14 @@ export const StyledScoreBoard = styled.p`
 
 export const ButtonContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 200px);
+  grid-template-columns: repeat(1);
   justify-content: center;
   margin: 5px 15px 5px 15px;
   gap: 0px;
   @media (min-width: 668px){
-    grid-template-columns: repeat(2, 250px);
+    grid-template-columns: repeat(1);
   }
   @media (min-width: 1025px){
-    grid-template-columns: repeat(2, 300px);
+    grid-template-columns: repeat(1);
   }
 `;

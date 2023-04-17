@@ -11,7 +11,7 @@ export const WelcomeContainer = styled.div`
 export const WelcomeTitle = styled.h1`
   margin-top: -12px;
   font-size: 48px;
-  padding: 100px 38px 18px 38px;
+  padding: 120px 38px 18px 38px;
   text-align: center;
   color: #252525;
   font-weight: 800;
@@ -28,13 +28,13 @@ export const WelcomeButtonContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 200px);
   justify-content: center;
-  margin: 5px 15px 5px 15px;
+  margin: 5px 0px 5px 0px;
   gap: 0px;
   @media (min-width: 668px){
-    grid-template-columns: repeat(2, 250px);
+    grid-template-columns: repeat(1);
   }
   @media (min-width: 1025px){
-    grid-template-columns: repeat(2, 300px);
+    grid-template-columns: repeat(1);
   }
 `;
 

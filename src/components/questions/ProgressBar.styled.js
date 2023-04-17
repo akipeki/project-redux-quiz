@@ -11,3 +11,19 @@ export const CounterStyling = styled.h1`
     font-size: 25px;
   }
 `;
+
+export const ProgressBarContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: rgb(240, 240, 25); // yellow
+  z-index: 100;
+`;
+
+export const ProgressBarLine = styled.div`
+  height: 100%;
+  background-color: #28FA94;
+  transition: width 0.3s ease;
+`;
