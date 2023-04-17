@@ -1,48 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// Change these to your own questions!
+// Questions array, containing the questions and their answer options
 const questions = [
-  { id: 1, questionText: 'Who set the Olympic record for the 100m dash in 2012?', options: ['Usain Bolt', 'Justin Gatlin', 'Tyson Gay', 'Asafa Powell'], correctAnswerIndex: 0 },
-  { id: 2, questionText: 'When was Michael Phelps last named male World Swimmer of the Year?', options: ['2012', '2014', '2016', '2018'], correctAnswerIndex: 2 }
+  { id: 1, questionText: 'What covers one third of the land’s surface and helps our planet?', options: ['Forests', 'Deserts', 'Grasslands', 'Rivers'], correctAnswerIndex: 0, fact: 'Forests cover one-third of the Earth’s land surface and are essential for maintaining the planet’s health by absorbing carbon dioxide.' },
+  { id: 2, questionText: 'Why are bees essential to life on earth?', options: ['Provide oxygen', 'Turn over soil', 'Reduce pests', 'Provide food'], correctAnswerIndex: 3, fact: 'Bees are essential because they pollinate flowers, which helps plants produce fruits and seeds, providing food for humans and animals.' },
+  { id: 3, questionText: 'Where are rainforests found?', options: ['Northern hemisphere', 'Equator', 'Southern hemisphere', 'South Pole'], correctAnswerIndex: 1, fact: 'Rainforests are found near the equator, where the climate is warm and humid, which is ideal for the growth of diverse plant and animal species.' },
+  { id: 4, questionText: 'What is the second heaviest land animal?', options: ['Rhinoceros', 'Bison', 'Hippopotamus', 'Gorilla'], correctAnswerIndex: 0, fact: 'The second heaviest land animal is the rhinoceros, with some species weighing over 2,500 kg (5,500 lb). The heaviest land animal is the African elephant.' },
+  { id: 5, questionText: 'What is a simple way to save energy at home?', options: ['Leaving lights on', 'Unplugging chargers', 'Using oven', 'Long showers'], correctAnswerIndex: 1, fact: 'Unplugging chargers when not in use is a simple way to save energy at home. Chargers continue to draw power even when they are not charging devices.' },
+  { id: 6, questionText: 'How many hearts does an octopus have?', options: ['1', '2', '3', '4'], correctAnswerIndex: 2, fact: 'An octopus has three hearts. Two hearts pump blood through the gills, and the third pumps blood through the rest of the body.' }
 ]
-
+// The initial state of the quiz slice
 const initialState = {
-  questions,
-  answers: [],
-  currentQuestionIndex: 0,
-  quizOver: false
-}
+  currentStep: 'welcome', // The current step in the quiz ('welcome', 'quiz', 'summary')
+  questions, // The questions array defined earlier
+  answers: [], // An array to store the user's answers
+  currentQuestionIndex: 0, // The index of the current question
+  quizOver: false // A boolean to track if the quiz is over
+};
 
+// Define the quiz slice using the createSlice function
 export const quiz = createSlice({
-  name: 'quiz',
-  initialState,
+  name: 'quiz', // Name of the slice
+  initialState, // The initial state
   reducers: {
-
-    /**
-     * Use this action when a user selects an answer to the question.
-     * The answer will be stored in the `quiz.answers` state with the
-     * following values:
-     *
-     *    questionId  - The id of the question being answered.
-     *    answerIndex - The index of the selected answer from the question's options.
-     *    question    - A copy of the entire question object, to make it easier to show
-     *                  details about the question in your UI.
-     *    answer      - The answer string.
-     *    isCorrect   - true/false if the answer was the one which the question says is correct.
-     *
-     * When dispatching this action, you should pass an object as the payload with `questionId`
-     * and `answerIndex` keys. See the readme for more details.
-     */
+    // This action is triggered when the user submits an answer
     submitAnswer: (state, action) => {
-      const { questionId, answerIndex } = action.payload
-      const question = state.questions.find((q) => q.id === questionId)
+      const { questionId, answerIndex } = action.payload;
+      const question = state.questions.find((q) => q.id === questionId);
 
       if (!question) {
-        throw new Error('Could not find question! Check to make sure you are passing the question id correctly.')
+        throw new Error('Could not find question! Check to make sure you are passing the question id correctly.');
       }
 
       if (question.options[answerIndex] === undefined) {
-        throw new Error(`You passed answerIndex ${answerIndex}, but it is not in the possible answers array!`)
+        throw new Error(`You passed answerIndex ${answerIndex}, but it is not in the possible answers array!`);
       }
 
       state.answers.push({
@@ -51,34 +42,61 @@ export const quiz = createSlice({
         question,
         answer: question.options[answerIndex],
         isCorrect: question.correctAnswerIndex === answerIndex
-      })
+      });
     },
 
-    /**
-     * Use this action to progress the quiz to the next question. If there's
-     * no more questions (the user was on the final question), set `quizOver`
-     * to `true`.
-     *
-     * This action does not require a payload.
-     */
+    // This action is triggered when the user moves to the next question
     goToNextQuestion: (state) => {
       if (state.currentQuestionIndex + 1 === state.questions.length) {
-        state.quizOver = true
+        state.quizOver = true;
       } else {
-        state.currentQuestionIndex += 1
+        state.currentQuestionIndex += 1;
       }
     },
 
-    /**
-     * Use this action to reset the state to the initial state the page had
-     * when it was loaded. Who doesn't like re-doing a quiz when you know the
-     * answers?!
-     *
-     * This action does not require a payload.
-     */
+    // This action is triggered when the user restarts the quiz
     restart: () => {
-      return initialState
-    }
+      return initialState;
+    },
 
+    // This action is used to update the current step of the quiz
+    setCurrentStep: (state, action) => {
+      state.currentStep = action.payload;
+    }
   }
-})
+});
+
+// Export the actions generated by createSlice
+export const { submitAnswer, goToNextQuestion, restart, setCurrentStep } = quiz.actions;
+
+// Export the quiz reducer
+export default quiz.reducer;
+
+// We are exporting quiz.reducer instead of the entire quiz object
+// because the reducer is the part that will be used in the store configuration.
+// The reducer is responsible for managing and updating the state of the quiz slice.
+
+// When you set up your Redux store, you'll need to provide a rootReducer that combines
+// all the individual reducers. By exporting only the reducer from quiz.js,
+// you can easily import and use it when you create your store:
+
+// import { configureStore } from '@reduxjs/toolkit';
+// import quizReducer from './quiz';
+
+// const rootReducer = {
+//  quiz: quizReducer,
+// };
+
+// const store = configureStore({
+//  reducer: rootReducer,
+// });
+
+// export default store;
+
+// Meanwhile, the actions that are exported (submitAnswer,
+// goToNextQuestion, restart, and setCurrentStep) are used
+// throughout the application to dispatch actions
+// and update the state of the quiz slice.
+// By separating the exports like this, you can import
+// only the parts of the quiz slice that are needed in
+// different components, making the code more organized and efficient.
